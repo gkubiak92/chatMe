@@ -1,20 +1,19 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import styled from 'styled-components/native';
+
+const StyledView = styled.View`
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledText = styled.Text`
+  font-size: 48px;
+`;
 
 const AppLogo = () => (
-  <View style={styles.logoContainer}>
-    <Text style={styles.logo}>ChatMe</Text>
-  </View>
+  <StyledView>
+    <StyledText>chatMe</StyledText>
+  </StyledView>
 );
-
-const styles = StyleSheet.create({
-  logoContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    fontSize: 48,
-  },
-});
 
 export default AppLogo;

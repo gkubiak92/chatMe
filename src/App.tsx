@@ -8,6 +8,11 @@ const StyledView = styled.View`
   flex: 1;
   justify-content: space-evenly;
   align-items: center;
+  background-color: white;
+`;
+
+const StyledImage = styled.Image`
+  height: 260px;
 `;
 
 const App = () => {
@@ -16,6 +21,10 @@ const App = () => {
       <StatusBar barStyle="dark-content" />
       <StyledView>
         <AppLogo />
+        <StyledImage
+          source={require('src/assets/homeImage.png')}
+          resizeMode="contain"
+        />
         <AppButton title="SignIn with Google" onPress={() => {}} />
       </StyledView>
     </>
