@@ -1,33 +1,23 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
-import AppLogo from './components/AppLogo/AppLogo';
-import AppButton from './components/AppButton/AppButton';
-import styled from 'styled-components/native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
+import ChatScreen from './screens/ChatScreen/ChatScreen';
 
-const StyledView = styled.View`
-  flex: 1;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: white;
-`;
-
-const StyledImage = styled.Image`
-  height: 260px;
-`;
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <StyledView>
-        <AppLogo />
-        <StyledImage
-          source={require('src/assets/homeImage.png')}
-          resizeMode="contain"
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{headerShown: false}}
         />
-        <AppButton title="SignIn with Google" onPress={() => {}} />
-      </StyledView>
-    </>
+        <Stack.Screen name="Chat" component={ChatScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

@@ -1,11 +1,6 @@
 import React from 'react';
-import {ButtonProps, GestureResponderEvent} from 'react-native';
 import styled from 'styled-components/native';
-
-interface AppButtonProps {
-  title: string;
-  onPress: (event: GestureResponderEvent) => void;
-}
+import {AppButtonProps} from './types';
 
 const StyledView = styled.View`
   align-items: center;
