@@ -1,11 +1,12 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useDispatch } from 'react-redux';
 import { authFailure } from '../redux/auth/authSlice';
 import ChatScreen from '../screens/ChatScreen/ChatScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
+import NullComponent from '../components/NullComponent/NullComponent';
 
 
 const Tab = createBottomTabNavigator();
@@ -36,7 +37,7 @@ const AppTabNavigator = () => {
                 name="account" />
             )
           }} />
-        <Tab.Screen name="Logout" component={() => null} options={{
+        <Tab.Screen name="Logout" component={NullComponent} options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons
               color={color}
