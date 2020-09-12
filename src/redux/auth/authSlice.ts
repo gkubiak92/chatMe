@@ -13,8 +13,8 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         authStart() { },
-        authSuccess({ isAuth }) { isAuth = true; },
-        authFailure({ isAuth }) { isAuth = false },
+        authSuccess(state) { state.isAuth = true; },
+        authFailure(state) { state.isAuth = false },
     }
 });
 

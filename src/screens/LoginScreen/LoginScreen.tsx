@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 import AppButton from '../../components/AppButton/AppButton';
 import AppLogo from '../../components/AppLogo/AppLogo';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { authSuccess } from '../../redux/auth/authSlice';
+import { RootState } from '../../redux/rootReducer';
+import { Text } from 'react-native';
 
 const StyledView = styled.View`
   flex: 1;
