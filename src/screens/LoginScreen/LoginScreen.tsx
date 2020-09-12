@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 import AppButton from '../../components/AppButton/AppButton';
 import AppLogo from '../../components/AppLogo/AppLogo';
+import { useDispatch } from 'react-redux';
+import { authSuccess } from '../../redux/auth/authSlice';
 
 const StyledView = styled.View`
   flex: 1;
@@ -15,8 +17,9 @@ const StyledImage = styled.Image`
 `;
 
 const LoginScreen = () => {
+  const dispatch = useDispatch();
   const handleLoginClick = () => {
-    console.log('Authenticated');
+    dispatch(authSuccess());
   };
 
   return (
