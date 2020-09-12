@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/native';
 import AppButton from '../../components/AppButton/AppButton';
 import AppLogo from '../../components/AppLogo/AppLogo';
-import {Props} from './types';
 
 const StyledView = styled.View`
   flex: 1;
@@ -15,10 +14,11 @@ const StyledImage = styled.Image`
   height: 260px;
 `;
 
-const HomeScreen = ({navigation}: Props) => {
+const LoginScreen = () => {
   const handleLoginClick = () => {
-    navigation.navigate('Chat');
+    console.log('Authenticated');
   };
+
   return (
     <StyledView>
       <AppLogo />
@@ -31,4 +31,4 @@ const HomeScreen = ({navigation}: Props) => {
   );
 };
 
-export default HomeScreen;
+export default LoginScreen;
