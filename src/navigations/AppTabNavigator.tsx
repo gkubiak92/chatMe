@@ -17,7 +17,7 @@ const AppTabNavigator = () => {
   }
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="Chat">
+      <Tab.Navigator initialRouteName="Chat" tabBarOptions={{ activeTintColor: "#ffcf00", }} >
         <Tab.Screen name="Chat" component={ChatScreen}
           options={{
             tabBarIcon: ({ color, size }) => (
