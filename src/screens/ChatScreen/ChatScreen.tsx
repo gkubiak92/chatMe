@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-import {convertSnapshotToArray} from '../../services/firebase/firebase';
+import { convertSnapshotToArray } from '../../services/firebase/firebase';
 
 const ChatScreen = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -12,13 +12,13 @@ const ChatScreen = () => {
       firestore()
         .collection('rooms')
         .get()
-        .then((data) => {
-          setData(convertSnapshotToArray(data));
+        .then((res) => {
+          setData(convertSnapshotToArray(res));
           setDataLoaded(true);
         })
         .catch((e) => console.log(e));
     }
-  }, []);
+  }, [dataLoaded]);
 
   return (
     <View>
