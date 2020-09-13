@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import firestore from '@react-native-firebase/firestore'
-import { convertSnapshotToArray } from '../../services/firebase/firebase';
+import React, {useEffect, useState} from 'react';
+import {Text, View} from 'react-native';
+import firestore from '@react-native-firebase/firestore';
+import {convertSnapshotToArray} from '../../services/firebase/firebase';
 
 const ChatScreen = () => {
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -9,22 +9,25 @@ const ChatScreen = () => {
 
   useEffect(() => {
     if (!dataLoaded) {
-      firestore().collection('rooms')
+      firestore()
+        .collection('rooms')
         .get()
-        .then(data => {
+        .then((data) => {
           setData(convertSnapshotToArray(data));
-          setDataLoaded(true)
+          setDataLoaded(true);
         })
-        .catch(e => console.log(e))
+        .catch((e) => console.log(e));
     }
-  }, [])
+  }, []);
 
   return (
     <View>
       <Text>Here will be chat</Text>
-      {data.map((room) => <Text>{room.name}</Text>)}
+      {data.map((room) => (
+        <Text key={room.id}>{room.name}</Text>
+      ))}
     </View>
-  )
+  );
 };
 
 export default ChatScreen;
