@@ -1,5 +1,5 @@
 import { Config } from 'react-native-config'
-import firebase from 'firebase/app';
+import firebase from '@react-native-firebase/app'
 
 const firebaseConfig = {
     apiKey: Config.FIREBASE_API_KEY,
@@ -11,8 +11,21 @@ const firebaseConfig = {
     appId: Config.FIREBASE_APP_ID,
 };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
-export const firestore = firebase.firestore();
+
+/*
+ * Method which convert collection snapshot fetched from firestore
+ * to array which can be put into redux state
+ */
+export function convertSnapshotToArray(collection: any) {
+    const arr = collection.docs.map((item: any) => {
+        return {
+            ...item.data(),
+            id: item.id,
+        };
+    });
+    return arr;
+};
 
 
