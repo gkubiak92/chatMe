@@ -66,3 +66,6 @@ buck-out/
 .env
 .env.local
 .env.prod
+
+# Big Java hprof file
+*.hprof
