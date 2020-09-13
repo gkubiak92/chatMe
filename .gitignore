@@ -69,3 +69,6 @@ buck-out/
 
 # Big Java hprof file
 *.hprof
+
+# Google services json file with api keys (generated in Firebase project options)
+google-services.json
