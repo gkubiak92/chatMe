@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { authFailure } from '../redux/auth/authSlice';
-import ChatScreen from '../screens/ChatScreen/ChatScreen';
+import ChatScreen from '../screens/ChatList/ChatListScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import NullComponent from '../components/NullComponent/NullComponent';
 

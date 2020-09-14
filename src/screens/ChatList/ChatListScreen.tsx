@@ -38,6 +38,9 @@ const ChatScreen = () => {
               header={item.name}
               lastMessage={item.lastMessage}
               lastMessageTime={item.lastMessageTime}
+              handlePress={() => {
+                console.log('pressed: ', item.name);
+              }}
             />
           )}
         />

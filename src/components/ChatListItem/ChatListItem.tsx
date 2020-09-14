@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import {
   getFirebaseDate,
   getFirebaseTime,
@@ -10,6 +10,7 @@ interface Props {
   header: string;
   lastMessage: string;
   lastMessageTime: firebase.firestore.Timestamp;
+  handlePress: () => void;
 }
 
 const ListItemContainer = styled.View`
@@ -38,17 +39,24 @@ const Subheader = styled.Text`
   font-size: 12px;
 `;
 
-const ChatListItem = ({ header, lastMessage, lastMessageTime }: Props) => (
-  <ListItemContainer>
-    <ListItemContentColumn>
-      <ChatHeader>{header}</ChatHeader>
-      <Subheader>{lastMessage}</Subheader>
-    </ListItemContentColumn>
-    <ListItemTimeColumn>
-      <Text>{getFirebaseDate(lastMessageTime)}</Text>
-      <Text>{getFirebaseTime(lastMessageTime)}</Text>
-    </ListItemTimeColumn>
-  </ListItemContainer>
+const ChatListItem: React.FC<Props> = ({
+  header,
+  lastMessage,
+  lastMessageTime,
+  handlePress,
+}) => (
+  <Pressable onPress={handlePress}>
+    <ListItemContainer>
+      <ListItemContentColumn>
+        <ChatHeader>{header}</ChatHeader>
+        <Subheader>{lastMessage}</Subheader>
+      </ListItemContentColumn>
+      <ListItemTimeColumn>
+        <Text>{getFirebaseDate(lastMessageTime)}</Text>
+        <Text>{getFirebaseTime(lastMessageTime)}</Text>
+      </ListItemTimeColumn>
+    </ListItemContainer>
+  </Pressable>
 );
 
 export default ChatListItem;
