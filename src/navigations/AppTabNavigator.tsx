@@ -19,7 +19,12 @@ const AppTabNavigator = () => {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Chat"
-        tabBarOptions={{ activeTintColor: '#ffcf00' }}>
+        tabBarOptions={{
+          inactiveTintColor: '#E6E6E6',
+          activeTintColor: '#40424c',
+          inactiveBackgroundColor: '#40424c',
+          activeBackgroundColor: '#ffcf00',
+        }}>
         <Tab.Screen
           name="Chat"
           component={ChatScreen}
