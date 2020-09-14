@@ -2,6 +2,7 @@ export interface ChatRoom {
   id: string;
   name: string;
   lastMessage: string;
+  lastMessageTime: firebase.firestore.Timestamp;
   messages: [];
 }
 

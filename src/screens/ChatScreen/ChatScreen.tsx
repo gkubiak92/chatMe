@@ -34,7 +34,11 @@ const ChatScreen = () => {
         <FlatList
           data={chatRooms}
           renderItem={({ item }) => (
-            <ChatListItem header={item.name} lastMessage={item.lastMessage} />
+            <ChatListItem
+              header={item.name}
+              lastMessage={item.lastMessage}
+              lastMessageTime={item.lastMessageTime}
+            />
           )}
         />
       )}
