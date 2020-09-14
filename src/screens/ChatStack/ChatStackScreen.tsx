@@ -12,7 +12,11 @@ const ChatStack = createStackNavigator<ChatStackParamList>();
 
 const ChatStackScreen = () => (
   <ChatStack.Navigator initialRouteName="ChatList">
-    <ChatStack.Screen name="ChatList" component={ChatListScreen} />
+    <ChatStack.Screen
+      name="ChatList"
+      component={ChatListScreen}
+      options={{ headerShown: false }}
+    />
     <ChatStack.Screen name="ChatRoom" component={ChatRoom} />
   </ChatStack.Navigator>
 );
