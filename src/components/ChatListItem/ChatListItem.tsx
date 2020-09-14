@@ -45,7 +45,7 @@ const ChatListItem: React.FC<Props> = ({
   lastMessageTime,
   handlePress,
 }) => (
-  <Pressable onPress={handlePress}>
+  <Pressable onPress={() => handlePress()}>
     <ListItemContainer>
       <ListItemContentColumn>
         <ChatHeader>{header}</ChatHeader>
