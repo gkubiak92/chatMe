@@ -1,10 +1,10 @@
 import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../navigators/RootStack';
 import React from 'react';
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
-import { ChatStackParamList } from '../ChatStackScreen';
 
-type ChatRoomScreenRouteProp = RouteProp<ChatStackParamList, 'ChatRoom'>;
+type ChatRoomScreenRouteProp = RouteProp<RootStackParamList, 'ChatRoom'>;
 
 type Props = {
   route: ChatRoomScreenRouteProp;

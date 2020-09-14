@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
-import { convertSnapshotToArray } from '../../../services/firebase/utils';
+import { convertSnapshotToArray } from '../../services/firebase/utils';
 import { FlatList } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 import { ActivityIndicator } from 'react-native';
 import { ChatRoom } from 'api/types';
-import ChatListItem from '../../../components/ChatListItem/ChatListItem';
+import ChatListItem from '../../components/ChatListItem/ChatListItem';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { ChatStackParamList } from '../ChatStackScreen';
+import { CommonActions } from '@react-navigation/native';
+import { HomeStackParamList } from 'navigators/HomeStack';
 
-type ChatStackNavigationProp = StackNavigationProp<
-  ChatStackParamList,
+type ChatListNavigationProp = StackNavigationProp<
+  HomeStackParamList,
   'ChatList'
 >;
 
 type Props = {
-  navigation: ChatStackNavigationProp;
+  navigation: ChatListNavigationProp;
 };
 
 const StyledView = styled.View`
@@ -50,8 +51,12 @@ const ChatListScreen = ({ navigation }: Props) => {
               lastMessage={item.lastMessage}
               lastMessageTime={item.lastMessageTime}
               handlePress={() => {
-                console.log('dziala');
-                navigation.navigate('ChatRoom', { chatRoomId: item.id });
+                navigation.dispatch(
+                  CommonActions.navigate({
+                    name: 'ChatRoom',
+                    params: { chatRoomId: item.id },
+                  }),
+                );
               }}
             />
           )}

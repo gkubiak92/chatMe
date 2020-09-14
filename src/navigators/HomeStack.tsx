@@ -2,13 +2,13 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { authFailure } from '../../redux/auth/authSlice';
-import ProfileScreen from '../ProfileScreen/ProfileScreen';
-import NullComponent from '../../components/NullComponent/NullComponent';
-import ChatStackScreen from '../../screens/ChatStack/ChatStackScreen';
+import { authFailure } from '../redux/auth/authSlice';
+import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
+import NullComponent from '../components/NullComponent/NullComponent';
+import ChatListScreen from '../screens/ChatList/ChatListScreen';
 
 export type HomeStackParamList = {
-  ChatStack: undefined;
+  ChatList: undefined;
   Profile: undefined;
   Logout: undefined;
 };
@@ -23,7 +23,7 @@ const HomeStackScreen = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName="ChatStack"
+      initialRouteName="ChatList"
       tabBarOptions={{
         inactiveTintColor: '#E6E6E6',
         activeTintColor: '#40424c',
@@ -31,8 +31,8 @@ const HomeStackScreen = () => {
         activeBackgroundColor: '#ffcf00',
       }}>
       <Tab.Screen
-        name="ChatStack"
-        component={ChatStackScreen}
+        name="ChatList"
+        component={ChatListScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons color={color} size={size} name="chat" />
