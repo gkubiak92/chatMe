@@ -1,13 +1,19 @@
 import styled from 'styled-components/native';
 
+const ScrollContainer = styled.View`
+  flex: 1;
+`;
+
 const ChatRoomContainer = styled.View`
   flex: 1;
+  padding: 12px;
 `;
 
 const InputContainer = styled.View`
   flex-direction: row;
   margin-top: auto;
   padding: 8px;
+  background-color: #eee;
 `;
 
 const TextInput = styled.TextInput`
@@ -17,6 +23,7 @@ const TextInput = styled.TextInput`
   font-size: 18px;
   border-color: #e6e6e6;
   border-width: 2px;
+  background-color: white;
 `;
 
 const SendButton = styled.TouchableHighlight`
@@ -27,4 +34,10 @@ const SendButton = styled.TouchableHighlight`
   color: #40424c;
 `;
 
-export default { ChatRoomContainer, InputContainer, TextInput, SendButton };
+export default {
+  ScrollContainer,
+  ChatRoomContainer,
+  InputContainer,
+  TextInput,
+  SendButton,
+};
