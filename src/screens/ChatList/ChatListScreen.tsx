@@ -23,6 +23,17 @@ const StyledView = styled.View`
   flex: 1;
 `;
 
+const handleChatClick = (
+  navigation: StackNavigationProp<HomeStackParamList, 'ChatList'>,
+  chatRoomItem: ChatRoom,
+) =>
+  navigation.dispatch(
+    CommonActions.navigate({
+      name: 'ChatRoom',
+      params: { chatRoomId: chatRoomItem.id, chatRoomName: chatRoomItem.name },
+    }),
+  );
+
 const ChatListScreen = ({ navigation }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
@@ -50,14 +61,7 @@ const ChatListScreen = ({ navigation }: Props) => {
               header={item.name}
               lastMessage={item.lastMessage}
               lastMessageTime={item.lastMessageTime}
-              handlePress={() => {
-                navigation.dispatch(
-                  CommonActions.navigate({
-                    name: 'ChatRoom',
-                    params: { chatRoomId: item.id },
-                  }),
-                );
-              }}
+              handlePress={() => handleChatClick(navigation, item)}
             />
           )}
         />
