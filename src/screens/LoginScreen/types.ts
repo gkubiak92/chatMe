@@ -1,5 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from 'screens/ChatList/node_modules/types';
+import { RootStackParamList } from '../../navigators/RootStack';
 
 export type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
