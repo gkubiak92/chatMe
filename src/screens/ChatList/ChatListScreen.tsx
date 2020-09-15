@@ -2,35 +2,23 @@ import React, { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { convertSnapshotToArray } from '../../services/firebase/utils';
 import { FlatList } from 'react-native-gesture-handler';
-import styled from 'styled-components/native';
-import { ActivityIndicator } from 'react-native';
 import { ChatRoom } from 'api/types';
 import ChatListItem from '../../components/ChatListItem/ChatListItem';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { CommonActions } from '@react-navigation/native';
 import { HomeStackParamList } from 'navigators/HomeStack';
-
-type ChatListNavigationProp = StackNavigationProp<
-  HomeStackParamList,
-  'ChatList'
->;
-
-type Props = {
-  navigation: ChatListNavigationProp;
-};
-
-const StyledView = styled.View`
-  flex: 1;
-`;
+import Loader from '../../components/Loader/Loader';
+import S from './StyledComponents';
+import { Props } from './types';
 
 const handleChatClick = (
   navigation: StackNavigationProp<HomeStackParamList, 'ChatList'>,
-  chatRoomItem: ChatRoom,
+  { id, name }: ChatRoom,
 ) =>
   navigation.dispatch(
     CommonActions.navigate({
       name: 'ChatRoom',
-      params: { chatRoomId: chatRoomItem.id, chatRoomName: chatRoomItem.name },
+      params: { chatRoomId: id, chatRoomName: name },
     }),
   );
 
@@ -50,9 +38,9 @@ const ChatListScreen = ({ navigation }: Props) => {
   }, []);
 
   return (
-    <StyledView>
+    <S.ChatListScreenContainer>
       {isLoading ? (
-        <ActivityIndicator size="large" color="red" />
+        <Loader size="large" color="red" />
       ) : (
         <FlatList
           data={chatRooms}
@@ -66,7 +54,7 @@ const ChatListScreen = ({ navigation }: Props) => {
           )}
         />
       )}
-    </StyledView>
+    </S.ChatListScreenContainer>
   );
 };
 
