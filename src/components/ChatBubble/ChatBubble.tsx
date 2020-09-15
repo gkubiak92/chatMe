@@ -12,26 +12,21 @@ const ChatBubbleContainer = styled.View<Pick<Props, 'variant'>>`
   justify-content: flex-start;
   align-items: ${({ variant }) =>
     variant === 'me' ? 'flex-end' : 'flex-start'};
-  margin-bottom: 12px;
+  margin-top: 12px;
 `;
 
-const Bubble = styled.View<Pick<Props, 'variant'>>`
+const Bubble = styled.Text<Pick<Props, 'variant'>>`
   padding: 8px;
   width: 300px;
+  color: ${({ variant }) => (variant === 'me' ? '#40424c' : 'white')};
   background-color: ${({ variant }) =>
     variant === 'me' ? '#ffcf00' : '#40424c'};
-`;
-
-const BubbleText = styled.Text`
-  color: white;
 `;
 
 const ChatBubble = ({ variant, chatMessage }: Props) => (
   <ChatBubbleContainer variant={variant}>
     <Text>{chatMessage.user}</Text>
-    <Bubble variant={variant}>
-      <BubbleText>{chatMessage.text}</BubbleText>
-    </Bubble>
+    <Bubble variant={variant}>{chatMessage.text}</Bubble>
   </ChatBubbleContainer>
 );
 

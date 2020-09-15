@@ -7,7 +7,6 @@ import { convertSnapshotToArray } from '../../services/firebase/utils';
 import S from './StyledComponents';
 import { Props } from './types';
 import ChatBubble from '../../components/ChatBubble/ChatBubble';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const ChatRoom = ({ route }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,6 +18,7 @@ const ChatRoom = ({ route }: Props) => {
       .collection('rooms')
       .doc(route.params!.chatRoomId)
       .collection('messages')
+      .orderBy('timestamp')
       .get()
       .then((res) => {
         setMessages(convertSnapshotToArray(res));
@@ -31,6 +31,7 @@ const ChatRoom = ({ route }: Props) => {
       .collection('rooms')
       .doc(route.params!.chatRoomId)
       .collection('messages')
+      .orderBy('timestamp')
       .onSnapshot((doc) => {
         setMessages(convertSnapshotToArray(doc));
       });
@@ -59,21 +60,21 @@ const ChatRoom = ({ route }: Props) => {
   ) : (
     <>
       <S.ScrollContainer>
-        <ScrollView>
-          <S.ChatRoomContainer>
-            {messages.map((msg) =>
-              msg.user === 'me' ? (
-                <ChatBubble key={msg.id} chatMessage={msg} variant="me" />
-              ) : (
-                <ChatBubble
-                  key={msg.id}
-                  chatMessage={msg}
-                  variant="otherUser"
-                />
-              ),
-            )}
-          </S.ChatRoomContainer>
-        </ScrollView>
+        <S.ChatRoomFlatList
+          inverted
+          data={messages}
+          renderItem={({ item }: { item: ChatMessage }) =>
+            item.user === 'me' ? (
+              <ChatBubble key={item.id} chatMessage={item} variant="me" />
+            ) : (
+              <ChatBubble
+                key={item.id}
+                chatMessage={item}
+                variant="otherUser"
+              />
+            )
+          }
+        />
       </S.ScrollContainer>
 
       <S.InputContainer>

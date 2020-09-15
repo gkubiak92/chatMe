@@ -1,10 +1,14 @@
+import { ChatMessage } from 'api/types';
+import { FlatList } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
 const ScrollContainer = styled.View`
   flex: 1;
 `;
 
-const ChatRoomContainer = styled.View`
+// Workaround for styled flatlist typings
+// https://dev.to/acro5piano/use-styled-components-reactnative-s-flatlist-in-typescript-308e
+const ChatRoomFlatList = styled(FlatList as new () => FlatList<ChatMessage>)`
   flex: 1;
   padding: 12px;
 `;
@@ -36,7 +40,7 @@ const SendButton = styled.TouchableHighlight`
 
 export default {
   ScrollContainer,
-  ChatRoomContainer,
+  ChatRoomFlatList,
   InputContainer,
   TextInput,
   SendButton,
