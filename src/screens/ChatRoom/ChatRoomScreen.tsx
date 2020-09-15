@@ -18,7 +18,7 @@ const ChatRoom = ({ route }: Props) => {
       .collection('rooms')
       .doc(route.params!.chatRoomId)
       .collection('messages')
-      .orderBy('timestamp')
+      .orderBy('timestamp', 'desc')
       .get()
       .then((res) => {
         setMessages(convertSnapshotToArray(res));
@@ -31,7 +31,7 @@ const ChatRoom = ({ route }: Props) => {
       .collection('rooms')
       .doc(route.params!.chatRoomId)
       .collection('messages')
-      .orderBy('timestamp')
+      .orderBy('timestamp', 'desc')
       .onSnapshot((doc) => {
         setMessages(convertSnapshotToArray(doc));
       });
@@ -48,7 +48,7 @@ const ChatRoom = ({ route }: Props) => {
       .add({
         text,
         user,
-        timestamp: Date.now(),
+        timestamp: firestore.Timestamp.fromDate(new Date(Date.now())),
       })
       .then(() => {
         setInputMsg('');
