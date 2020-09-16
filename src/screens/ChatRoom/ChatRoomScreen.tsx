@@ -65,6 +65,7 @@ const ChatRoom = ({ route }: Props) => {
           placeholder="Type message here..."
           value={inputMsg}
           onChangeText={(text) => setInputMsg(text)}
+          onSubmitEditing={() => sendMessage()}
         />
         <S.SendButton onPress={() => sendMessage()}>
           <Text>Send</Text>
