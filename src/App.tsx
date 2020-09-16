@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import RootStack from './navigators/RootStack';
 
 const App = () => {
-  const isAuth = useSelector<RootState>((state) => state.auth.isAuth);
+  const isAuth = useSelector<RootState, boolean>((state) => state.auth.isAuth);
 
   return !isAuth ? (
     <LoginScreen />

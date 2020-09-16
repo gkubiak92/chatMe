@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import S from './StyledComponents';
-import AppButton from '../../components/AppButton/AppButton';
 import AppLogo from '../../components/AppLogo/AppLogo';
 import { useDispatch } from 'react-redux';
 import { authSuccess } from '../../redux/auth/authSlice';
@@ -15,7 +14,7 @@ const LoginScreen = () => {
     try {
       const userInfo = await signInWithGoogle();
       console.log('logged with:', userInfo);
-      dispatch(authSuccess());
+      dispatch(authSuccess(userInfo));
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +27,6 @@ const LoginScreen = () => {
         source={require('src/assets/homeImage.png')}
         resizeMode="contain"
       />
-      <AppButton title="SignIn with Google" onPress={handleLoginClick} />
       <GoogleSigninButton onPress={handleLoginClick} />
     </S.LoginContainer>
   );

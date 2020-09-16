@@ -64,3 +64,11 @@ export const signInWithGoogle = async () => {
     throw new Error(error);
   }
 };
+
+export const signOutFromGoogle = async () => {
+  try {
+    await GoogleSignin.signOut();
+  } catch (error) {
+    throw new Error(error);
+  }
+};

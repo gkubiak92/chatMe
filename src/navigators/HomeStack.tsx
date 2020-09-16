@@ -6,6 +6,7 @@ import { authFailure } from '../redux/auth/authSlice';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import NullComponent from '../components/NullComponent/NullComponent';
 import ChatListScreen from '../screens/ChatList/ChatListScreen';
+import { signOutFromGoogle } from '../services/firebase/utils';
 
 export type HomeStackParamList = {
   ChatList: undefined;
@@ -17,8 +18,13 @@ const Tab = createBottomTabNavigator<HomeStackParamList>();
 
 const HomeStackScreen = () => {
   const dispatch = useDispatch();
-  const handleLogoutClick = () => {
-    dispatch(authFailure());
+  const handleLogoutClick = async () => {
+    try {
+      await signOutFromGoogle();
+      dispatch(authFailure());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

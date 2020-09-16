@@ -1,10 +1,24 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { AuthUser } from 'redux/auth/authSlice';
+import { RootState } from 'redux/rootReducer';
+import S from './StyledComponents';
 
-const ProfileScreen = () => (
-  <View>
-    <Text>Here will be profile screen</Text>
-  </View>
-);
+const ProfileScreen = () => {
+  const { givenName, familyName, photo, email } = useSelector<
+    RootState,
+    AuthUser
+  >((state) => state.auth.user);
+
+  return (
+    <S.ProfileContainer>
+      <S.ProfileAvatar source={{ uri: photo as string }} />
+      <S.Name>
+        {givenName} {familyName}
+      </S.Name>
+      <S.Email>{email}</S.Email>
+    </S.ProfileContainer>
+  );
+};
 
 export default ProfileScreen;
