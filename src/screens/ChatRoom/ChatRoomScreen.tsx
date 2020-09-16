@@ -1,4 +1,3 @@
-import firestore from '@react-native-firebase/firestore';
 import { ChatMessage } from 'api/types';
 import Loader from '../../components/Loader/Loader';
 import React, { useEffect, useState } from 'react';
@@ -7,53 +6,38 @@ import { convertSnapshotToArray } from '../../services/firebase/utils';
 import S from './StyledComponents';
 import { Props } from './types';
 import ChatBubble from '../../components/ChatBubble/ChatBubble';
+import {
+  getChatRoomMessages,
+  listenToNewMessages,
+  sendMessageToChat,
+} from '../../services/firebase/queries';
 
 const ChatRoom = ({ route }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputMsg, setInputMsg] = useState('');
+  const chatRoomId = route.params!.chatRoomId!;
 
   useEffect(() => {
-    firestore()
-      .collection('rooms')
-      .doc(route.params!.chatRoomId)
-      .collection('messages')
-      .orderBy('timestamp', 'desc')
-      .get()
-      .then((res) => {
-        setMessages(convertSnapshotToArray(res));
-        setIsLoading(false);
-      });
-  }, [route.params]);
+    getChatRoomMessages(chatRoomId).then((res) => {
+      setMessages(convertSnapshotToArray(res));
+      setIsLoading(false);
+    });
+  }, [chatRoomId]);
 
   useEffect(() => {
-    const subscriber = firestore()
-      .collection('rooms')
-      .doc(route.params!.chatRoomId)
-      .collection('messages')
-      .orderBy('timestamp', 'desc')
-      .onSnapshot((doc) => {
-        setMessages(convertSnapshotToArray(doc));
-      });
+    const subscriber = listenToNewMessages(chatRoomId).onSnapshot((doc) => {
+      setMessages(convertSnapshotToArray(doc));
+    });
 
     // Stop listening for updates when no longer required
     return () => subscriber();
-  }, [route.params]);
+  }, [chatRoomId]);
 
-  const sendMessage = (text: string, user = 'me') => {
-    firestore()
-      .collection('rooms')
-      .doc(route.params!.chatRoomId)
-      .collection('messages')
-      .add({
-        text,
-        user,
-        timestamp: firestore.Timestamp.fromDate(new Date(Date.now())),
-      })
-      .then(() => {
-        setInputMsg('');
-      });
-  };
+  const sendMessage = () =>
+    sendMessageToChat(chatRoomId, inputMsg).then(() => {
+      setInputMsg('');
+    });
 
   return isLoading ? (
     <Loader />
@@ -76,14 +60,13 @@ const ChatRoom = ({ route }: Props) => {
           }
         />
       </S.ScrollContainer>
-
       <S.InputContainer>
         <S.TextInput
           placeholder="Type message here..."
           value={inputMsg}
           onChangeText={(text) => setInputMsg(text)}
         />
-        <S.SendButton onPress={() => sendMessage(inputMsg)}>
+        <S.SendButton onPress={() => sendMessage()}>
           <Text>Send</Text>
         </S.SendButton>
       </S.InputContainer>
