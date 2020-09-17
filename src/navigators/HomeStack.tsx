@@ -5,7 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { authFailure } from '../redux/auth/authSlice';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import NullComponent from '../components/NullComponent/NullComponent';
-import ChatListScreen from '../screens/ChatList/ChatListScreen';
+import ChatListScreen from '../screens/ChatListScreen/ChatListScreen';
 import { signOutFromGoogle } from '../services/firebase/utils';
 
 export type HomeStackParamList = {

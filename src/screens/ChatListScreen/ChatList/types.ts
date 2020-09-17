@@ -1,4 +1,5 @@
 import { StackNavigationProp } from '@react-navigation/stack';
+import { ChatRoom } from 'api/types';
 import { HomeStackParamList } from 'navigators/HomeStack';
 
 export type ChatListNavigationProp = StackNavigationProp<
@@ -6,6 +7,6 @@ export type ChatListNavigationProp = StackNavigationProp<
   'ChatList'
 >;
 
-export type Props = {
-  navigation: ChatListNavigationProp;
-};
+export interface ChatListProps {
+  chatRooms: ChatRoom[];
+}

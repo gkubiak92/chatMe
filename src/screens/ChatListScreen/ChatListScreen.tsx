@@ -1,29 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import { convertSnapshotToArray } from '../../services/firebase/utils';
-import { FlatList } from 'react-native-gesture-handler';
 import { ChatRoom } from 'api/types';
-import ChatListItem from '../../components/ChatListItem/ChatListItem';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { CommonActions } from '@react-navigation/native';
-import { HomeStackParamList } from 'navigators/HomeStack';
 import Loader from '../../components/Loader/Loader';
 import S from './StyledComponents';
-import { Props } from './types';
 import FloatingActionButton from '../../components/FloatingActionButton/FloatingActionButton';
+import ChatList from './ChatList/ChatList';
 
-const handleChatClick = (
-  navigation: StackNavigationProp<HomeStackParamList, 'ChatList'>,
-  { id, name }: ChatRoom,
-) =>
-  navigation.dispatch(
-    CommonActions.navigate({
-      name: 'ChatRoom',
-      params: { chatRoomId: id, chatRoomName: name },
-    }),
-  );
-
-const ChatListScreen = ({ navigation }: Props) => {
+const ChatListScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
 
@@ -44,17 +28,7 @@ const ChatListScreen = ({ navigation }: Props) => {
         <Loader size="large" color="red" />
       ) : (
         <>
-          <FlatList
-            data={chatRooms}
-            renderItem={({ item }) => (
-              <ChatListItem
-                header={item.name}
-                lastMessage={item.lastMessage}
-                lastMessageTime={item.lastMessageTime}
-                handlePress={() => handleChatClick(navigation, item)}
-              />
-            )}
-          />
+          <ChatList chatRooms={chatRooms} />
           <FloatingActionButton
             iconName="plus"
             onPress={() => console.log('floating button')}

@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import HomeStack from './HomeStack';
-import ChatRoomScreen from '../screens/ChatRoom/ChatRoomScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen/ChatRoomScreen';
 import { RouteProp } from '@react-navigation/native';
 
 export type RootStackParamList = {
