@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import firestore from '@react-native-firebase/firestore';
 import { convertSnapshotToArray } from '../../services/firebase/utils';
 import { ChatRoom } from 'api/types';
 import Loader from '../../components/Loader/Loader';
 import S from './StyledComponents';
 import FloatingActionButton from '../../components/FloatingActionButton/FloatingActionButton';
 import ChatList from './ChatList/ChatList';
+import { getChatRooms } from '../../services/firebase/queries';
+import NewChatModal from './NewChatModal/NewChatModal';
 
 const ChatListScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [chatRooms, setChatRooms] = useState<ChatRoom[]>([]);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    firestore()
-      .collection('rooms')
-      .get()
+    getChatRooms()
       .then((res) => {
         setChatRooms(convertSnapshotToArray(res) as ChatRoom[]);
         setIsLoading(false);
@@ -29,9 +29,13 @@ const ChatListScreen = () => {
       ) : (
         <>
           <ChatList chatRooms={chatRooms} />
+          <NewChatModal
+            visible={modalVisible}
+            onClose={() => setModalVisible(false)}
+          />
           <FloatingActionButton
             iconName="plus"
-            onPress={() => console.log('floating button')}
+            onPress={() => setModalVisible(true)}
           />
         </>
       )}

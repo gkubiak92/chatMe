@@ -1,6 +1,8 @@
 import firestore from '@react-native-firebase/firestore';
 import { ChatRoom } from 'api/types';
 
+export const getChatRooms = async () => firestore().collection('rooms').get();
+
 export const getChatRoomMessages = async (chatRoomId: string) =>
   await firestore()
     .collection('rooms')
