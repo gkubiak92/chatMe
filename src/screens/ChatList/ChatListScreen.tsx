@@ -10,6 +10,7 @@ import { HomeStackParamList } from 'navigators/HomeStack';
 import Loader from '../../components/Loader/Loader';
 import S from './StyledComponents';
 import { Props } from './types';
+import FloatingActionButton from '../../components/FloatingActionButton/FloatingActionButton';
 
 const handleChatClick = (
   navigation: StackNavigationProp<HomeStackParamList, 'ChatList'>,
@@ -42,17 +43,23 @@ const ChatListScreen = ({ navigation }: Props) => {
       {isLoading ? (
         <Loader size="large" color="red" />
       ) : (
-        <FlatList
-          data={chatRooms}
-          renderItem={({ item }) => (
-            <ChatListItem
-              header={item.name}
-              lastMessage={item.lastMessage}
-              lastMessageTime={item.lastMessageTime}
-              handlePress={() => handleChatClick(navigation, item)}
-            />
-          )}
-        />
+        <>
+          <FlatList
+            data={chatRooms}
+            renderItem={({ item }) => (
+              <ChatListItem
+                header={item.name}
+                lastMessage={item.lastMessage}
+                lastMessageTime={item.lastMessageTime}
+                handlePress={() => handleChatClick(navigation, item)}
+              />
+            )}
+          />
+          <FloatingActionButton
+            iconName="plus"
+            onPress={() => console.log('floating button')}
+          />
+        </>
       )}
     </S.ChatListScreenContainer>
   );
