@@ -1,11 +1,11 @@
 import React from 'react';
-import { GestureResponderEvent, Pressable } from 'react-native';
+import { Pressable } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import styled from 'styled-components/native';
 
 interface Props {
   iconName: string;
-  onPress: (event: GestureResponderEvent) => void;
+  onPress: () => void;
 }
 
 const CircleButton = styled.View`
@@ -21,11 +21,11 @@ const CircleButton = styled.View`
 `;
 
 const FloatingActionButton = ({ iconName, onPress }: Props) => (
-  <Pressable onPress={onPress}>
-    <CircleButton>
-      <MaterialCommunityIcons name={iconName} size={30} color="#ffcf00" />
-    </CircleButton>
-  </Pressable>
+  <CircleButton>
+    <Pressable onPress={() => onPress()} hitSlop={20}>
+      <MaterialCommunityIcons name={iconName} size={30} color="#E6E6E6" />
+    </Pressable>
+  </CircleButton>
 );
 
 export default FloatingActionButton;
