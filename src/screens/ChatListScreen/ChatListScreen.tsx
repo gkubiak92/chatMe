@@ -31,6 +31,7 @@ const ChatListScreen = () => {
           <ChatList chatRooms={chatRooms} />
           <NewChatModal
             visible={modalVisible}
+            onSubmit={() => setModalVisible(false)}
             onClose={() => setModalVisible(false)}
           />
           <FloatingActionButton

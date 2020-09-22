@@ -39,5 +39,5 @@ export const createChatRoom = async (name: string, members: string[]) => {
     lastMessage: '',
     members,
   };
-  await firestore().collection('rooms').add(chatRoom);
+  return await firestore().collection('rooms').add(chatRoom);
 };

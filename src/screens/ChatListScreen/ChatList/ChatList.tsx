@@ -1,22 +1,9 @@
-import { ChatRoom } from 'api/types';
 import ChatListItem from '../../../components/ChatListItem/ChatListItem';
 import React from 'react';
 import { FlatList } from 'react-native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { HomeStackParamList } from '../../../navigators/types';
-import { CommonActions, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { ChatListNavigationProp, ChatListProps } from './types';
-
-const handleChatClick = (
-  navigation: StackNavigationProp<HomeStackParamList, 'ChatList'>,
-  { id, name }: ChatRoom,
-) =>
-  navigation.dispatch(
-    CommonActions.navigate({
-      name: 'ChatRoom',
-      params: { chatRoomId: id, chatRoomName: name },
-    }),
-  );
+import { navigateToChatRoom } from '../utils';
 
 const ChatList = ({ chatRooms }: ChatListProps) => {
   const navigation = useNavigation<ChatListNavigationProp>();
@@ -29,7 +16,7 @@ const ChatList = ({ chatRooms }: ChatListProps) => {
           header={item.name}
           lastMessage={item.lastMessage}
           lastMessageTime={item.lastMessageTime}
-          handlePress={() => handleChatClick(navigation, item)}
+          handlePress={() => navigateToChatRoom(navigation, item.id, item.name)}
         />
       )}
     />
