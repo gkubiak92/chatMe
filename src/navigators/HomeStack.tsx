@@ -7,12 +7,7 @@ import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import NullComponent from '../components/NullComponent/NullComponent';
 import ChatListScreen from '../screens/ChatListScreen/ChatListScreen';
 import { signOutFromGoogle } from '../services/firebase/utils';
-
-export type HomeStackParamList = {
-  ChatList: undefined;
-  Profile: undefined;
-  Logout: undefined;
-};
+import { HomeStackParamList } from './types';
 
 const Tab = createBottomTabNavigator<HomeStackParamList>();
 

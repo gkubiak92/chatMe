@@ -1,19 +1,10 @@
 import React from 'react';
-import styled from 'styled-components/native';
-
-const StyledView = styled.View`
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledText = styled.Text`
-  font-size: 48px;
-`;
+import S from './StyledComponents';
 
 const AppLogo = () => (
-  <StyledView>
-    <StyledText>chatMe</StyledText>
-  </StyledView>
+  <S.LogoContainer>
+    <S.LogoText>chatMe</S.LogoText>
+  </S.LogoContainer>
 );
 
 export default AppLogo;

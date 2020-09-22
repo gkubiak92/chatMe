@@ -3,7 +3,7 @@ import ChatListItem from '../../../components/ChatListItem/ChatListItem';
 import React from 'react';
 import { FlatList } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { HomeStackParamList } from '../../../navigators/HomeStack';
+import { HomeStackParamList } from '../../../navigators/types';
 import { CommonActions, useNavigation } from '@react-navigation/native';
 import { ChatListNavigationProp, ChatListProps } from './types';
 

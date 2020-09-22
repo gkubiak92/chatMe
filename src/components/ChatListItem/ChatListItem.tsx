@@ -5,13 +5,7 @@ import {
   getFirebaseDate,
   getFirebaseTime,
 } from '../../services/firebase/utils';
-
-interface Props {
-  header: string;
-  lastMessage: string;
-  lastMessageTime?: firebase.firestore.Timestamp;
-  handlePress: () => void;
-}
+import { Props } from './types';
 
 const ChatListItem: React.FC<Props> = ({
   header,

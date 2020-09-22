@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { AuthUser } from 'redux/auth/authSlice';
+import { AuthUser } from 'redux/auth/types';
 import { RootState } from 'redux/rootReducer';
 import S from './StyledComponents';
 

@@ -1,34 +1,10 @@
 import React, { useState } from 'react';
+import { Props } from './types';
 import { Button, Modal, Pressable, Text } from 'react-native';
-import styled from 'styled-components/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TextInput } from 'react-native-gesture-handler';
 import { createChatRoom } from '../../../services/firebase/queries';
-
-interface Props {
-  visible: boolean;
-  onClose: () => void;
-}
-
-const ModalContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalForm = styled.View`
-  justify-content: space-evenly;
-  padding: 12px;
-  width: 300px;
-  height: 240px;
-  background-color: white;
-`;
-
-const CloseButton = styled.View`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-`;
+import S from './StyledComponents';
 
 const handleAddClick = async (name: string, members: string[]) => {
   console.log('Added room');
@@ -40,8 +16,8 @@ const NewChatModal = ({ visible, onClose }: Props) => {
 
   return (
     <Modal animationType="slide" visible={visible} transparent={true}>
-      <ModalContainer>
-        <ModalForm>
+      <S.ModalContainer>
+        <S.ModalForm>
           <Text>Start new conversation</Text>
           <TextInput
             placeholder="Chat name"
@@ -52,13 +28,13 @@ const NewChatModal = ({ visible, onClose }: Props) => {
             title="Add chat room"
             onPress={() => handleAddClick(chatRoomName, ['testid'])}
           />
-          <CloseButton>
+          <S.CloseButton>
             <Pressable onPress={() => onClose()} hitSlop={20}>
               <MaterialCommunityIcons name="close" size={30} color="#40424c" />
             </Pressable>
-          </CloseButton>
-        </ModalForm>
-      </ModalContainer>
+          </S.CloseButton>
+        </S.ModalForm>
+      </S.ModalContainer>
     </Modal>
   );
 };

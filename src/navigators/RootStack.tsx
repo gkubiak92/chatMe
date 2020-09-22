@@ -3,16 +3,7 @@ import React from 'react';
 import HomeStack from './HomeStack';
 import ChatRoomScreen from '../screens/ChatRoomScreen/ChatRoomScreen';
 import { RouteProp } from '@react-navigation/native';
-
-export type RootStackParamList = {
-  Home: undefined;
-  ChatRoom:
-    | {
-        chatRoomId?: string;
-        chatRoomName?: string;
-      }
-    | undefined;
-};
+import { RootStackParamList } from './types';
 
 type ChatRoomScreenOptions = {
   route: RouteProp<RootStackParamList, 'ChatRoom'>;

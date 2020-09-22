@@ -1,12 +1,6 @@
 import { User } from '@react-native-community/google-signin';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export type AuthUser = User['user'];
-
-export interface AuthState {
-  isAuth: boolean;
-  user: AuthUser;
-}
+import { AuthState } from './types';
 
 const initialUserData = {
   id: '',

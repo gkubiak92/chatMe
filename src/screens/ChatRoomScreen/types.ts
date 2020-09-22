@@ -1,5 +1,5 @@
 import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from 'navigators/RootStack';
+import { RootStackParamList } from 'navigators/types';
 
 export type ChatRoomScreenRouteProp = RouteProp<RootStackParamList, 'ChatRoom'>;
 
